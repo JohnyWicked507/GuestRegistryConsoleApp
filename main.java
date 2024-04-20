@@ -9,7 +9,6 @@ public class Main {
         int edad;
         char genero;
         boolean esResidente;
-        double temperatura;
 
         // Solicitar al usuario que ingrese la información del visitante
         System.out.println("Ingrese el nombre del visitante:");
