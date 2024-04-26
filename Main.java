@@ -2,32 +2,71 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        // Declaración y asignación de variables para representar la información del visitante
+        // Declaracion de variables para representar la informacion del visitante
         String nombre;
-        int edad;
+        int edad = 0;
         char genero;
         boolean esResidente;
+        int totalVisitas = 0;
+        double tiempoPromedio = 0;
 
-        // Solicitar al usuario que ingrese la información del visitante
-        System.out.println("Ingrese el nombre del visitante:");
-        nombre = scanner.nextLine();
+        // Solicitar al usuario que ingrese la informacion del visitante y el tiempo de estadia
+        for (int i = 1; i <= 7; i++) {
+            print("\nIngrese la informacion del visitante #" + i + ":");
 
-        System.out.println("Ingrese la edad del visitante:");
-        edad = scanner.nextInt();
+            print("Nombre del visitante:");
+            nombre = input();
 
-        System.out.println("Ingrese el género del visitante (M/F):");
-        genero = scanner.next().charAt(0);
+            print("Edad del visitante:");
+            edad = Integer.parseInt(input());
 
-        System.out.println("¿El visitante es residente? (true/false):");
-        esResidente = scanner.nextBoolean();
+            print("Genero del visitante (M/F):");
+            genero = input().charAt(0);
 
-        // Imprimir la información del visitante en pantalla
-        System.out.println("\nInformación del visitante:");
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Edad: " + edad);
-        System.out.println("Género: " + genero);
-        System.out.println("¿Es residente?: " + esResidente);
+            print("¿El visitante es residente? (Si/No):");
+            esResidente = obtenerRespuestaSiNo(input());
+
+            totalVisitas++;
+
+            tiempoPromedio += calcularTiempoPromedio();
+
+            print("Informacion del visitante #" + i + ":");
+            print("Nombre: " + nombre);
+            print("Edad: " + edad);
+            print("Genero: " + genero);
+            print("¿Es residente?: " + (esResidente ? "Si" : "No"));
+        }
+
+        tiempoPromedio /= 7;
+
+        // Imprimir resultados
+        print("\nResultados:");
+        print("Cantidad total de visitas: " + totalVisitas);
+        print("Tiempo promedio de estadia: " + tiempoPromedio + " horas");
+
+        if (edad >= 18) {
+            print("El visitante es mayor de edad.");
+        }
+        print("El visitante es menor de edad.");
+    }
+
+    // Metodo para convertir la respuesta del usuario a booleano
+    private static boolean obtenerRespuestaSiNo(String respuesta) {
+        return respuesta.equalsIgnoreCase("Si");
+    }
+
+    // Metodo para simular el calculo del tiempo promedio de estadia
+    // Supongamos que el tiempo promedio de estadia es de 2.5 horas
+    private static double calcularTiempoPromedio() {
+        return 2.5;
+    }
+
+    private static void print(String s) {
+        System.out.println(s);
+    }
+
+    private static String input() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 }
